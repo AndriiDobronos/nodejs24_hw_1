@@ -1,20 +1,35 @@
-let property = '';
+const { bgBlue, bgYellow, bgRed }  = require('colors/safe');
 
-function info(msg) {
-    console.log(property,':',msg);
+function getLogger(moduleName,colorsEnabled,logLevel) {
+    switch(logLevel) {
+        case 'info':
+            return {
+            info:(...args) => console.log(colorsEnabled ? bgBlue(`${moduleName}:`) : `${moduleName}:`, ...args),
+            warn:(...args) => console.error(colorsEnabled ? bgYellow(`${moduleName}:`) : `${moduleName}:`, ...args),
+            error:(...args) => console.error(colorsEnabled ? bgRed(`${moduleName}:`) : `${moduleName}:`, ...args)
+            }
+            break;
+        case 'warn':
+            return {
+                info:() =>{},
+                warn:(...args) => console.error(colorsEnabled ? bgYellow(`${moduleName}:`) : `${moduleName}:`, ...args),
+                error:(...args) => console.error(colorsEnabled ? bgRed(`${moduleName}:`) : `${moduleName}:`, ...args)
+            }
+            break;
+        case 'error':
+            return {
+                info:() =>{},
+                warn:() =>{},
+                error:(...args) => console.error(colorsEnabled ? bgRed(`${moduleName}:`) : `${moduleName}:`, ...args)
+            }
+        default:
+            return {
+                info:() =>{},
+                warn:(...args) => console.error(colorsEnabled ? bgYellow(`${moduleName}:`) : `${moduleName}:`, ...args),
+                error:() =>{}
+            }
+            break;
+    }
 }
 
-function warn(msg) {
-    console.error(msg);
-}
-
-function error(msg) {
-    console.error(msg);
-}
-
-function logger(arg)  {
-    property = arg
-    return {info, warn, error}
-}
-
-module.exports = logger;
+module.exports = getLogger;

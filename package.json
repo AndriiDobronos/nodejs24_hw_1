@@ -1,0 +1,22 @@
+{
+  "name": "nodejs24_hw_1",
+  "version": "0.1.0",
+  "description": "Training project",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./main.js",
+    "start:dev": "nodemon ./main.js"
+  },
+  "author": "andrii",
+  "license": "MIT",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "config": "^3.3.11",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "nodemon": "^3.1.0"
+  }
+}
