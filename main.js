@@ -2,9 +2,8 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const config = require('config');
-const {logLevel} = require("./config/default");
 
-const logger = require('./utils/logger')('main',config.colorsEnabled,logLevel);
+const logger = require('./utils/logger')('main', config.logger);
 
 logger.info('info message : the script is running!');
 
