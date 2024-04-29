@@ -4,28 +4,28 @@ function getLogger(moduleName,colorsEnabled,logLevel) {
     switch(logLevel) {
         case 'info':
             return {
-            info:(...args) => console.log(colorsEnabled ? bgBlue(`${moduleName}:`) : `${moduleName}:`, ...args),
-            warn:(...args) => console.error(colorsEnabled ? bgYellow(`${moduleName}:`) : `${moduleName}:`, ...args),
-            error:(...args) => console.error(colorsEnabled ? bgRed(`${moduleName}:`) : `${moduleName}:`, ...args)
+            info:(...args) => console.log(+colorsEnabled === 1 ? bgBlue(`${moduleName}:`) : `${moduleName}:`, ...args),
+            warn:(...args) => console.error(+colorsEnabled === 1 ? bgYellow(`${moduleName}:`) : `${moduleName}:`, ...args),
+            error:(...args) => console.error(+colorsEnabled === 1 ? bgRed(`${moduleName}:`) : `${moduleName}:`, ...args)
             }
             break;
         case 'warn':
             return {
                 info:() =>{},
-                warn:(...args) => console.error(colorsEnabled ? bgYellow(`${moduleName}:`) : `${moduleName}:`, ...args),
-                error:(...args) => console.error(colorsEnabled ? bgRed(`${moduleName}:`) : `${moduleName}:`, ...args)
+                warn:(...args) => console.error(+colorsEnabled === 1 ? bgYellow(`${moduleName}:`) : `${moduleName}:`, ...args),
+                error:(...args) => console.error(+colorsEnabled === 1 ? bgRed(`${moduleName}:`) : `${moduleName}:`, ...args)
             }
             break;
         case 'error':
             return {
                 info:() =>{},
                 warn:() =>{},
-                error:(...args) => console.error(colorsEnabled ? bgRed(`${moduleName}:`) : `${moduleName}:`, ...args)
+                error:(...args) => console.error(+colorsEnabled === 1 ? bgRed(`${moduleName}:`) : `${moduleName}:`, ...args)
             }
         default:
             return {
                 info:() =>{},
-                warn:(...args) => console.error(colorsEnabled ? bgYellow(`${moduleName}:`) : `${moduleName}:`, ...args),
+                warn:(...args) => console.error(+colorsEnabled === 1 ? bgYellow(`${moduleName}:`) : `${moduleName}:`, ...args),
                 error:() =>{}
             }
             break;

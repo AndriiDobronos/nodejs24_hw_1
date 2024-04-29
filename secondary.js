@@ -1,4 +1,4 @@
-const logger = require('./utils/logger')('secondary',null,'info');
+const logger = require('./utils/logger')('secondary',1,'info');
 
 module.exports = {
     fn: () => {
