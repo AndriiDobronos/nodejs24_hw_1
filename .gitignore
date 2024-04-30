@@ -129,5 +129,9 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+# ignore all in 'static' except .gitkeep file
+static/*
+!static/.gitkeep
+
 nodejs24_hw_AndriiDobronos
 /nodejs24_hw_AndriiDobronos/
