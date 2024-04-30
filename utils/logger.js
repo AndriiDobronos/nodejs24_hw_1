@@ -1,35 +1,58 @@
-const { bgBlue, bgYellow, bgRed }  = require('colors/safe');
+const { bgBlue, bgYellow, bgRed, disable: disableColors }  = require('colors/safe');
 
-function getLogger(moduleName,colorsEnabled,logLevel) {
-    switch(logLevel) {
-        case 'info':
-            return {
-            info:(...args) => console.log(colorsEnabled ? bgBlue(`${moduleName}:`) : `${moduleName}:`, ...args),
-            warn:(...args) => console.error(colorsEnabled ? bgYellow(`${moduleName}:`) : `${moduleName}:`, ...args),
-            error:(...args) => console.error(colorsEnabled ? bgRed(`${moduleName}:`) : `${moduleName}:`, ...args)
-            }
-            break;
-        case 'warn':
-            return {
-                info:() =>{},
-                warn:(...args) => console.error(colorsEnabled ? bgYellow(`${moduleName}:`) : `${moduleName}:`, ...args),
-                error:(...args) => console.error(colorsEnabled ? bgRed(`${moduleName}:`) : `${moduleName}:`, ...args)
-            }
-            break;
-        case 'error':
-            return {
-                info:() =>{},
-                warn:() =>{},
-                error:(...args) => console.error(colorsEnabled ? bgRed(`${moduleName}:`) : `${moduleName}:`, ...args)
-            }
-        default:
-            return {
-                info:() =>{},
-                warn:(...args) => console.error(colorsEnabled ? bgYellow(`${moduleName}:`) : `${moduleName}:`, ...args),
-                error:() =>{}
-            }
-            break;
+function getLogger(moduleName,loggerConfig) {
+    const {colorsEnabled, logLevel} = loggerConfig;
+
+    if(+colorsEnabled === 0) {
+        disableColors();
+    }
+   
+    return {
+        info:(...args) => {
+            if(logLevel !== 'info') return;
+            console.log(bgBlue(`${moduleName}:`), ...args);
+        },
+        warn:(...args) => {
+            if(logLevel !== 'error') //return;
+            console.log(bgYellow(`${moduleName}:`), ...args);
+        },
+        error:(...args) => {
+            console.log(bgRed(`${moduleName}:`), ...args)
+        }
     }
 }
+
+
+//function getLogger(moduleName,colorsEnabled,logLevel) {
+    // switch(logLevel) {
+    //     case 'info':
+    //         return {
+    //         info:(...args) => console.log(+colorsEnabled === 1 ? bgBlue(`${moduleName}:`) : `${moduleName}:`, ...args),
+    //         warn:(...args) => console.error(+colorsEnabled === 1 ? bgYellow(`${moduleName}:`) : `${moduleName}:`, ...args),
+    //         error:(...args) => console.error(+colorsEnabled === 1 ? bgRed(`${moduleName}:`) : `${moduleName}:`, ...args)
+    //         }
+    //         break;
+    //     case 'warn':
+    //         return {
+    //             info:() =>{},
+    //             warn:(...args) => console.error(+colorsEnabled === 1 ? bgYellow(`${moduleName}:`) : `${moduleName}:`, ...args),
+    //             error:(...args) => console.error(+colorsEnabled === 1 ? bgRed(`${moduleName}:`) : `${moduleName}:`, ...args)
+    //         }
+    //         break;
+    //     case 'error':
+    //         return {
+    //             info:() =>{},
+    //             warn:() =>{},
+    //             error:(...args) => console.error(+colorsEnabled === 1 ? bgRed(`${moduleName}:`) : `${moduleName}:`, ...args)
+    //         }
+    //     default:
+    //         return {
+    //             info:() =>{},
+    //             warn:(...args) => console.error(+colorsEnabled === 1 ? bgYellow(`${moduleName}:`) : `${moduleName}:`, ...args),
+    //             error:() =>{}
+    //         }
+    //         break;
+    // }
+//}
 
 module.exports = getLogger;
