@@ -1,5 +1,4 @@
 const { bgBlue, bgYellow, bgRed, disable: disableColors }  = require('colors/safe');
-const { bgBlue, bgYellow, bgRed, disable: disableColors }  = require('colors/safe');
 
 function getLogger(moduleName, loggerConfig) {
     const { logLevel, colorsEnabled } = loggerConfig;

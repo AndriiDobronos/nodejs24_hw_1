@@ -6,7 +6,7 @@ module.exports = {
     start: async function start(source,target) {
         try {
             const targetExists = await fsAsync.stat(target).then(() => true).catch(() => false)
-            logger.info(`Каталог ${target} вже існує`)
+            logger.warn(`Каталог ${target} вже існує`)
 
             if (!targetExists) {
                 await fsAsync.mkdir(target, { recursive: true })
@@ -34,7 +34,7 @@ module.exports = {
                         logger.info(`Файл ${file} був скопійований у ${target}`)
 
                     } else {
-                        logger.info(`Файл ${file} вже існує у каталозі ${target}`)
+                        logger.warn(`Файл ${file} вже існує у каталозі ${target}`)
                     }
                 }
             }
