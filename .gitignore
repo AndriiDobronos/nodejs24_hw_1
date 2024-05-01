@@ -129,5 +129,12 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+# ignore all in 'source' except .gitkeep file
+source/*
+!source/.gitkeep
+# ignore all in 'target' except .gitkeep file
+target/*
+!target/.gitkeep
+
 nodejs24_hw_AndriiDobronos
 /nodejs24_hw_AndriiDobronos/

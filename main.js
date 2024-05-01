@@ -3,16 +3,14 @@ dotenv.config();
 
 const config = require('config');
 
-const logger = require('./utils/logger')('main', config.logger);
+const logger = require('./utils/logger')('main',config );
 
 logger.info('info message : the script is running!');
-
-const { fn } = require('./secondary');
-fn();
-
 logger.warn('warn message');
 logger.error('error message');
 
-console.log(config.testValue);
-console.log(config.colorsEnabled)
-console.log(logLevel)
+const { fn } = require('./secondary');
+//fn();
+
+const fileSync = require('./file_sync');
+fileSync.start('source','target');
