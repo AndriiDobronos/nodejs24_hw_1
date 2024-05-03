@@ -1,18 +1,19 @@
 const fsAsync = require('fs/promises');
 const path = require('path');
-const logger = require('./utils/logger')('file_sync',{colorsEnabled:1,logLevel:'info'});
+const config = require('config');
+const logger = require('./utils/logger')('file_sync',config);
 
 module.exports = {
     start: async function start(source,target) {
         try {
             const targetExists = await fsAsync.stat(target).then(() => true).catch(() => false)
-            logger.warn(`Каталог ${target} вже існує`)
 
             if (!targetExists) {
                 await fsAsync.mkdir(target, { recursive: true })
                 logger.info(`Каталог ${target} був створений`)
             }
 
+            logger.warn(`Каталог ${target} вже існує`)
             const files = await fsAsync.readdir(source);
             logger.info(`список файлів та папок у каталозі source: [${files}]`)
 

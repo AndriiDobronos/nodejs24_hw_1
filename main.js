@@ -9,7 +9,7 @@ logger.info('info message : the script is running!');
 logger.warn('warn message');
 logger.error('error message');
 
-const { fn } = require('./secondary');
+//const { fn } = require('./secondary');
 //fn();
 
 const fileSync = require('./file_sync');
