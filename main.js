@@ -10,7 +10,7 @@ logger.warn('warn message');
 logger.error('error message');
 
 const { fn } = require('./secondary');
-//fn();
+fn();
 
 const fileSync = require('./file_sync');
 fileSync.start('source','target');

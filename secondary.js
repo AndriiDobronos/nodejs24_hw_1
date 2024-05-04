@@ -1,4 +1,5 @@
-const logger = require('./utils/logger')('secondary',{colorsEnabled:1,logLevel:'info'});
+const config = require('config');
+const logger = require('./utils/logger')('secondary',config );
 
 module.exports = {
     fn: () => {
