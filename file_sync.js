@@ -1,7 +1,7 @@
 const fsAsync = require('fs/promises');
 const path = require('path');
 const config = require('config');
-const logger = require('./utils/logger')('file_sync',config);
+const logger = require('./utils/logger')('file_sync', config);
 
 module.exports = {
     start: async function start(source,target) {
