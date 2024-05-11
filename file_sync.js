@@ -3,6 +3,11 @@ const path = require('path');
 const config = require('config');
 const logger = require('./utils/logger')('file_sync', config);
 
+if(require.main === module) {
+    logger.info('executed as a standalone script');
+    this.start();
+}
+
 module.exports = {
     start: async function start(source,target) {
         try {
