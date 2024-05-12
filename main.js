@@ -14,3 +14,6 @@ fn();
 
 const fileSync = require('./file_sync');
 fileSync.start('source','target');
+
+const {server} = require('./server');
+server();
