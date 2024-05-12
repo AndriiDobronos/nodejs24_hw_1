@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./main.js",
     "start:debug": "node --inspect-brk ./main.js",
-    "start:dev": "nodemon ./main.js"
+    "start:dev": "nodemon ./main.js",
+    "filesync:dev": "nodemon ./file_sync.js",
+    "server:dev": "nodemon --inspect server.js",
+    "server": "node server.js"
   },
   "author": "andrii",
   "license": "MIT",
