@@ -1,15 +1,16 @@
 const fsAsync = require('fs/promises');
 const path = require('path');
-const config = require('config');
-const logger = require('./utils/logger')('file_sync', config);
+require('dotenv').config();
+const { logger: loggerConfig } = require('config');
+const logger = require('./utils/logger')('file_sync', loggerConfig);
 
 if(require.main === module) {
     logger.info('executed as a standalone script');
-    this.start();
+    this.start;
 }
 
 module.exports = {
-    start: async function start(source,target) {
+    start:async function start(source,target) {
         try {
             const targetExists = await fsAsync.stat(target).then(() => true).catch(() => false)
 
