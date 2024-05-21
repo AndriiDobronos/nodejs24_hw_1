@@ -111,6 +111,7 @@ dist
 
 # Serverless directories
 .serverless/
+serverWithEndpoints.js
 
 # FuseBox cache
 .fusebox/

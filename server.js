@@ -1,18 +1,17 @@
 const http = require('node:http');
-const dotenv = require('dotenv');
-dotenv.config();
-const config = require('config');
-const logger = require('./utils/logger')('server', config);
+require('dotenv').config();
+const { server: serverConfig, logger: loggerConfig } = require('config');
+const logger = require('./utils/logger')('server', loggerConfig);
 const srv = http.createServer();
-const port = 3030;
 
-srv.listen(port);
+srv.listen(serverConfig);
 srv.on('listening',()=> {
-    console.log(`Server listening on port: [${port}]`)
+    console.log(`Server listening on port:  [${serverConfig.port}]`)
 });
 
-srv.on('request', (req, resp) => {
+srv.on('request', (req, _resp) => logger.info(`incoming request: [${req.method}] ${req.url}`));
 
+srv.on('request', (req, resp) => {
     if (req.method === 'GET' && req.url === '/healthcheck') {
         resp.statusCode = 200;
         resp.setHeader('content-type', 'text/Auto');
@@ -26,7 +25,12 @@ srv.on('request', (req, resp) => {
         resp.end();
         return;
     }
-})
+});
+
+if(require.main === module) {
+    logger.info('executed as a standalone script');
+    this.server;
+}
 
 module.exports = {
     server: ()=> {
