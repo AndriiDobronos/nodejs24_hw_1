@@ -1,0 +1,40 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    background-color: darkgray;
+}
+
+.header h2 {
+    margin-left: 40px;
+}
+
+#root {
+
+}
+
+.mainTable {
+    margin-left: auto;
+    margin-right: auto;
+
+    border: 1px solid darkgray;
+    border-radius: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+
+    padding: 10px;
+
+    background-color: whitesmoke;
+}
+
+th {
+    text-align: left;
+}
+
+th.id {
+    padding-right: 15px;
+}
+
+th.title,
+th.cast {
+    min-width: 250px;
+}
