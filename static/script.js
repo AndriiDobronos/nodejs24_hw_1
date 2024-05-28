@@ -1,7 +1,7 @@
-const API_URL_BASE = 'http://localhost:3030';
+const API_URL_BASE = 'http://localhost:3031'; // 'http://localhost:3030'
 
 async function getUsersList() {
-    return await fetch(API_URL_BASE + '/users').then((r) => r.json());
+    return await fetch(API_URL_BASE + '/users').then((resp) => resp.json());
 }
 
 function drawTableWithContent(userData) {
@@ -46,7 +46,6 @@ function makeDataRow(userData) {
 
     return row;
 }
-// makeDataRow({ id: 1, username: 'John Smite', email: 'JohnSmite@mail.com', employee: 1 })
 
 async function init() {
     const usersData = await getUsersList();
