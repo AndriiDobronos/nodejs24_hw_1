@@ -1,0 +1,15 @@
+extends layout
+block title
+    h2 Add data of user
+block content
+    form(method="POST")
+        .group
+            label(for="username") Username
+            input(type="text" placeholder="enter the username" name="username" required)
+        .group
+            label(for="email") Email
+            input(type="text" placeholder="email" name="email" required)
+        .group
+            label(for="employee") Employee #
+            input(type="number" placeholder="####" name="employee" required)
+        button.submit(type="submit") Save New User

@@ -5,8 +5,10 @@ const morgan = require('morgan');
 const  rfs = require("rotating-file-stream");
 const path = require("path");
 const logger = require('./utils/logger')('express srv',loggerConfig);
+const cors = require('cors');
+const {pagesRouter} = require('./routers/pages')
 
-const { usersRouter } = require('./routers/users');
+const { usersRouter } = require('./routers/otherUsers');
 
 const app = express();
 
@@ -31,8 +33,12 @@ const stream = rfs.createStream(servePath, {
 const accessLogger = morgan(':date :method :url :status',{stream});
 app.use(accessLogger);
 
+app.set('view engine', 'pug');
+
+app.use(express.static('static'));
+
 app.use(morgan(':date :method :url :status'));
 
-app.use(express.json());
+//app.use('/users', cors(), express.json(), usersRouter);
 
-app.use('/users', usersRouter);
+app.use('/pug', cors(), express.json(), pagesRouter);
