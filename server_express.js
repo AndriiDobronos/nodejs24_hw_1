@@ -41,4 +41,4 @@ app.use(morgan(':date :method :url :status'));
 
 //app.use('/users', cors(), express.json(), usersRouter);
 
-app.use('/pug', cors(), express.json(), pagesRouter);
+app.use('/pug', express.json(), pagesRouter);
