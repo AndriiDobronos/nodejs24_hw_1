@@ -9,7 +9,8 @@ const usersMetadataSchema = yup.object({
 
 const usersDataValidator = async (req, resp, next) => {
     try {
-        await usersMetadataSchema.validate(req.body);
+        const parsedBody = await usersMetadataSchema.validate(req.body);
+        req.body = parsedBody;
     } catch (err) {
         resp.status(400).send({ error: err.message });
         return;
