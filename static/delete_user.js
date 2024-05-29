@@ -5,6 +5,6 @@ document.getElementById('deleteForm').addEventListener('submit', async function(
 
     await fetch('/pug/' + userId, {
         method: 'DELETE'});
-    
+
     window.location.href = '/pug';
 })
